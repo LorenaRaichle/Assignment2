@@ -1,7 +1,7 @@
 
 "openapi": "3.0.1"
 "info":
-  "title": "Search Engine API"
+  "title": "Search Engine API- Assignment 2 - Joey & Lorena"
   "version": "1"
 "paths":
   "/":
@@ -63,7 +63,54 @@
           "description": "This response is returned when the request is missing the query string parameter."
         404:
           "description": "This response is returned when no page is found for the given keyword."
+  "/admin/crawler":
+    post:
+      summary: "Crawl environment"
+      description: "Crawling process"
+      responses:
+        200:
+          description: "Successfully crawling"
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ResultsPage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Url'
+        302:
+          "description": "Redirects to a Web page containing the keyword. This response is returned when the client requests a text/html representation."
+          "headers":
+            "Location":
+              "schema":
+                "$ref": '#/components/schemas/Url'
+        400:
+          "description": "This response is returned when the request is missing the query string parameter."
+        404:
+          "description": "This response is returned when no page is found for the given keyword."
 
+    "/admin/delete":
+      delete:
+        summary: "Delete URL from index"
+        description: "Crawling process"
+        responses:
+          200:
+            description: "Successful deletion"
+
+    "/admin/update":
+      put:
+        summary: "Update URL info"
+        description: "Update the URL info in the index file"
+        responses:
+          200:
+            description: "Successful update"
+
+    "/admin/regenerate":
+      patch:
+        summary: "Regeneration of flipped index"
+        description: "Regenerate the flipped index file"
+        responses:
+          200:
+            description: "Successful regeneration"
 "components":
   "schemas":
     "MainPage":

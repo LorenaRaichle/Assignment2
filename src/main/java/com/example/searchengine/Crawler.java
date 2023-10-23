@@ -39,6 +39,25 @@ public abstract class Crawler {
             Elements elements; //TODO: initialize elements based on the webpage at the given url.
             //TODO: Use elements to put the keywords in the webpage in the list keywords.
             //TODO: Use elements to the hyperlinks to other pages in the environment in the list hyperlinks.
+            // safe content in doc
+            Document doc = Jsoup.connect(urlString).get();
+            // retrieve links and paragraphs from doc object
+            Elements links = doc.select("a[href]");
+            Elements paragraph = doc.select("p");
+
+            // Print the links and add to list
+            //System.out.println("print crawler link: ");
+            for (Element link : links) {
+                //System.out.println(link.attr("href"));
+                hyperlinks.add(link.attr("href").trim());
+            }
+
+            // Print keywords and add to list
+            // System.out.println("print crawler words: ");
+            for(Element p : paragraph){
+                //System.out.println(p.text());
+                keywords.add(p.text().trim());
+            }
         } catch (Exception e){
             e.printStackTrace();
         }

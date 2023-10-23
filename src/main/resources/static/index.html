@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head><title>Hypermedia Environment</title></head>
+<head><title>Index</title></head>
 <body>
+<h1>Assignment 2: Search Engine (Joey & Lorena)</h1>
+
 <form id = "form_id" action = "/search" method = "get">
-    <!--add input for keyword-->
-    <!--add button for "Search"-->
-    <!--add button for "I'm feeling lucky"-->
+    <!-- Input for keyword -->
+    <label for="searchTerm">Enter a search term:</label>
+    <input type="text" id="searchTerm" name="q" placeholder="Search term" required>
+    <br>
+    <br>
+    <!-- Button for "Search" -->
+    <button type="submit" name="searchButton">Search</button>
+
+    <br>
+    <br>
+    <button type="submit" formaction="/lucky">I'm feeling lucky</button>
 </form>
+
 </body>
+
 </html>
+
+
+
+
